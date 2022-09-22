@@ -11,7 +11,7 @@
     "cdk": "cdk",
     "synth": "cdk synth",
     "deploy": "cdk deploy --all --require-approval=never",
-    "destroy": "cdk destroy"
+    "destroy": "cdk destroy --all"
   },
   "devDependencies": {
     "aws-cdk": "2.43.0",
