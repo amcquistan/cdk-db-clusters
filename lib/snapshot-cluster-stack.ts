@@ -17,7 +17,7 @@ export class MySnapshotDatabaseClusterStack extends cdk.Stack {
     
     const cluster = new rds.DatabaseClusterFromSnapshot(this, "my-snapshot-db-cluster", {
       snapshotIdentifier: props.snapshotId,
-      // snapshotCredentials: rds.SnapshotCredentials.fromGeneratedSecret("postgres"),
+      snapshotCredentials: rds.SnapshotCredentials.fromGeneratedSecret("postgres"),
       clusterIdentifier: "my-snapshot-db",
       engine: rds.DatabaseClusterEngine.auroraPostgres({ version: rds.AuroraPostgresEngineVersion.VER_11_13 }),
       instanceProps: {

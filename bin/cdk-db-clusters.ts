@@ -5,11 +5,15 @@ import { MyDatabaseClusterStack } from '../lib/original-cluster-stack';
 import { MySnapshotDatabaseClusterStack } from '../lib/snapshot-cluster-stack';
 
 const app = new cdk.App();
-const networkStack = new MyNetworkStack(app, 'MyNetworkStack');
-new MyDatabaseClusterStack(app, "MyDatabaseClusterStack", {
-  vpc: networkStack.vpc
+const networkStack = new MyNetworkStack(app, 'db-network', {
+  stackName: "db-network"
 });
-new MySnapshotDatabaseClusterStack(app, "MySnapshotDatabaseClusterStack", {
+new MyDatabaseClusterStack(app, "db-original-cluster", {
   vpc: networkStack.vpc,
-  snapshotId: "my-db-original-snapshot"
+  stackName: "db-original-cluster"
+});
+new MySnapshotDatabaseClusterStack(app, "db-snapshot-cluster", {
+  vpc: networkStack.vpc,
+  snapshotId: "my-db-original-snapshot",
+  stackName: "db-snapshot-cluster"
 });
